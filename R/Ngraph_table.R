@@ -27,7 +27,10 @@ nhanes_table <- function(year, variables){
     stop("empty input for year!")
   }else{
     if(grepl("-*",year, ignore.case = T) == T){
-      first <- sub("-", "", a)
+      first <- sub("-", "", year) # get the first part of the specified year range
+      last  <- sub("-", "", year) # get the last part of the specified year range
+      ## determine whether the years fall into the same cycle
+      ## if not, grab the two cycles and cbind with all the cycles in between
     }else{
       ## if the user inputted year as a single year
       year = as.numeric(year)
@@ -39,8 +42,10 @@ nhanes_table <- function(year, variables){
   }
 
 
-
+  ## input the cycles into the RNHANES command to retrieve the data of interest
   nhanes_load_data(type, year)
+
+  ## filter the data for the specific variables
 }
 
 ## output the dataframe into a publication ready format
