@@ -12,9 +12,21 @@ nhanesA, and Shiny packages.
 
 # Intermediate Project Update
 
-short (at most 1 paragraph) description of what is left for your project
-for the remainder of the semester, e.g. make vignette, move the code to
-C++, finish documentation, add function X, etc.
+So far, I have a function that retrieves data from the CDC website with
+more flexible commands and a function that outputs the data into a
+publication ready table.
+
+To do:  
+make the vignette look much nicer  
+finish writing the function that outputs publication ready tables using
+the sjPlot package <br> add variable search via nhanesA <br> finish the
+function for interactive plots  
+finish documentation <br> make the nhnaes_table to allow:  
+ 1. make the input case insensitive  
+ 2. downloading without year specification  
+ 3. if type and variables do not agree (variables specified by the user
+are not in the specified type), ask if the user wants both (display yes
+or no)
 
 ## Installation
 
@@ -32,7 +44,9 @@ This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(nhanesGraphR)
-## basic example code
+
+Ngraph_table("2001 - 2010", "exam")
+#> NULL
 ```
 
 There will be a plot that looks much nicer than this :)
