@@ -77,68 +77,77 @@ nhanes_table <- function(year, type = NULL, variables = NULL, demographics = F){
     }else{ if(is.character(year)){
       ## for string inputs, check whether the input is a cycle or a specific year
 
-      ## check for cycle input
-      if(grepl("-*",year) == T){
-        first <- as.numeric(sub("\\-.*", "", year)) # get the first part of the specified year range
-        last  <- as.numeric(sub(".*-", "", year)) # get the last part of the specified year range
-
-        #### check whether this is a valid cycle
-        ## check if first is greater than 1999 and less than 2020
-        if(first < 1999 || first > 2020){
-          stop("The continuous NHANES starts from 1999 and is only available up to 2020. Please input a valid year or a valid cycle.")
-        }else{
-          ## check if first is one less than second
-
-          if(first > last){
-            stop("The first part of your year input is larger than the second part. Please input a valid cycle or a specific year you would like to see.")
+      ## check for single year input
+      if(grepl("-*",year) == F){
+        temp = as.numeric(year)
+        ## check whether the inputted year is valid
+        if(temp < 1999 || temp > 2020){
+          ## make the single input into a cycle
+          ## if the inputted year is odd, add one and make it into a cycle
+          if(temp %% 2 == 1){
+            input_year = paste(temp, temp + 1, sep = "-")
           }else{
-            ## the inputted string cycle is correct
-            if(first == last - 1){
-              input_year = paste(first, last, sep = "-")
+            input_year = paste(temp - 1, temp, sep = "-")
+          }
+        }
+        ## end of string single year input
+      }else{
+        ## check for cycle input
+          first <- as.numeric(sub("\\-.*", "", year)) # get the first part of the specified year range
+          last  <- as.numeric(sub(".*-", "", year)) # get the last part of the specified year range
+
+          print(first)
+          print(last)
+          #### check whether this is a valid cycle
+          ## check if first is greater than 1999 and less than 2020
+          if(first < 1999 || first > 2020 || last > 2020){
+            stop("The continuous NHANES starts from 1999 and is only available up to 2020. Please input a valid year or a valid cycle.")
+          }else{
+            ## check if first is one less than second
+
+            if(first > last){
+              print("The first part of your year input is larger than the second part. Please input a valid cycle or a specific year you would like to see.")
+              stop()
             }else{
-              ## ask which cycle they want to see
-              cat("It seems like your year input contains multiple cycles. Which cycle would you like to see?", sep = '\n')
-              cat('\n')
-              cat(year_check(first, last), sep = '\n')
-
-
-              cycle = readline(prompt = "Choose a cycle! Press q if you'd like to exit. ")
-              if(cycle == "q"){
-                stop("safely exited.")
+              ## the inputted string cycle is correct
+              if(first == last - 1){
+                input_year = year
               }else{
-                if(){
-                }else{
+                ## ask which cycle they want to see
+                cat("It seems like your year input contains multiple cycles. Which cycle would you like to see?", sep = '\n')
+                cat('\n')
+                cycles = year_check(first, last)
+                cat(cycles, sep = '\n')
 
+                ## ask the user to choose from the possible cycles
+                user_ans = readline(prompt = "Choose a cycle! Press q if you'd like to stop. ")
+                if(user_ans == "q"){
+                  print("safely stoped.")
+                  stop("\r ")
+                }else{
+                  if(is.numeric(user_ans) == F || user_ans > length(cycles) || user_ans < 1){
+                    print("Please provide an integer from the given options.")
+                    stop("\r ")
+                  }else{
+                    ## get the user chosen cycle
+                    input_year = paste(sub('.*\\.', "", cycles[user_ans]))
+                  }
                 }
               }
             }
-          }
-        }
 
+       }
 
-
-
-
-        ## determine whether the years fall into the same cycle
-        ## if not, grab the two cycles and cbind with all the cycles in between
-
-
-
-        ## end of string cycle input
-        }else{ ## string input non-cycle
-
-          }
-
-
-
+      } ## end of string part of year checking
     } ## end of string part of year checking
-    } ## end of non-null inputs
 
   } ## end of function
 
 
+  } ## end of non-null inputs
   ## input the cycles into the RNHANES command to retrieve the data of interest
-  nhanes_load_data(type = type, year = input_year, demographics = demographics)
+  # nhanes_load_data(file_name = type, year = input_year, demographics = demographics)
+  nhanes_load_data(file_name = "EPH", year = input_year, demographics = demographics)
 
   ## filter the data for the specific variables
 }
