@@ -14,5 +14,11 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.2
 Imports: 
     nhanesA,
-    RNHANES,
+    RNHANES (>= 1.1.0),
     sjPlot
+Remotes: 
+    SilentSpringInstitute/RNHANES
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
