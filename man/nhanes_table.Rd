@@ -2,15 +2,25 @@
 % Please edit documentation in R/Ngraph_table.R
 \name{nhanes_table}
 \alias{nhanes_table}
-\title{Create a data frame with specified parameters}
+\title{Loading NHANES data with a flexible year input}
 \usage{
-nhanes_table(year, variables)
+nhanes_table(year, type = NULL, variables = NULL, demographics = F)
 }
 \arguments{
-\item{year}{String vector that contains a range of years or a specific year}
+\item{year}{a numeric value of a year or string objective of a range year}
 
-\item{variables}{A list or a specific variable the user is interested in. Search for a specific variable using the "nhanesA::nhanesTableVars('EXAM', 'BMX_D')"}
+\item{type}{type of files}
+
+\item{variables}{a list or a specific variable the user is interested in. Search for a specific variable using the "nhanesA::nhanesTableVars('EXAM', 'BMX_D')"}
+
+\item{demographics}{logical value - whether to include a demographic information or not}
+}
+\value{
+an NHANES data table with user specified parameters
 }
 \description{
-Create a data frame with specified parameters
+Loading NHANES data with a flexible year input
+}
+\examples{
+nhanes_table("2007-2008","EPH")
 }
