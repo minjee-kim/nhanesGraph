@@ -1,14 +1,14 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# nhanesGraphR
+# nhanesGraph
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of nhanesGraphR is to provide an interactive graphical tools
-for the users to access more easily. This package utilizes RNHANES,
-nhanesA, and Shiny packages.
+The goal of nhanesGraph is to provide an interactive graphical tools for
+the users to access more easily. This package utilizes RNHANES, nhanesA,
+and Shiny packages.
 
 # Intermediate Project Update
 
@@ -30,7 +30,7 @@ or no)
 
 ## Installation
 
-You can install the development version of nhanesGraphR from
+You can install the development version of nhanesGraph from
 [GitHub](https://github.com/) with:
 
 ``` r

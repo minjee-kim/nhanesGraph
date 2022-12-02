@@ -13,12 +13,13 @@ knitr::opts_chunk$set(
 )
 ```
 
-# nhanesGraphR
+# nhanesGraph
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of nhanesGraphR is to provide an interactive graphical tools for the users to access more easily. This package utilizes RNHANES, nhanesA, and Shiny packages. 
+The goal of nhanesGraph is to provide an interactive graphical tools for the users to access more easily. This package utilizes RNHANES, nhanesA, and Shiny packages. 
 
 
 # Intermediate Project Update
@@ -38,7 +39,7 @@ make the nhnaes_table to allow:
 
 ## Installation
 
-You can install the development version of nhanesGraphR from [GitHub](https://github.com/) with:
+You can install the development version of nhanesGraph from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
@@ -50,14 +51,10 @@ devtools::install_github("minjee-kim/nhanesGraph")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-library(nhanesGraphR)
+#library(nhanesGraph)
 
-Ngraph_table("2001 - 2010", "exam")
+#nhanes_table("EPH","2007-2008")
 ```
 
 There will be a plot that looks much nicer than this :)
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
 
