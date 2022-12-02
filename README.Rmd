@@ -51,9 +51,10 @@ devtools::install_github("minjee-kim/nhanesGraph")
 This is a basic example which shows you how to solve a common problem:
 
 ```{r example}
-#library(nhanesGraph)
+library(nhanesGraph)
 
-#nhanes_table("EPH","2007-2008")
+head(nhanes_table("2007-2008", "EPH"))
+
 ```
 
 There will be a plot that looks much nicer than this :)
