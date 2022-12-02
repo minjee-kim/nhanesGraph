@@ -48,17 +48,18 @@ year_check <- function(first, second){
   return(range_obj)
 }
 
-## year is the range of cycles
+
 #' Loading NHANES data with a flexible year input
 #'
 #' @param year a numeric value of a year or string objective of a range year
-#' @param variables A list or a specific variable the user is interested in. Search for a specific variable using the "nhanesA::nhanesTableVars('EXAM', 'BMX_D')"
+#' @param type type of files
+#' @param variables a list or a specific variable the user is interested in. Search for a specific variable using the "nhanesA::nhanesTableVars('EXAM', 'BMX_D')"
+#' @param demographics logical value - whether to include a demographic information or not
 #'
-#'
-#' @return
+#' @return an NHANES data table with user specified parameters
 #' @export
 #'
-#' @examples
+#' @examples nhanes_table("2007-2008","EPH")
 nhanes_table <- function(year, type = NULL, variables = NULL, demographics = F){
 
   ## making sure the year input isn't empty
@@ -96,8 +97,6 @@ nhanes_table <- function(year, type = NULL, variables = NULL, demographics = F){
           first <- as.numeric(sub("\\-.*", "", year)) # get the first part of the specified year range
           last  <- as.numeric(sub(".*-", "", year)) # get the last part of the specified year range
 
-          print(first)
-          print(last)
           #### check whether this is a valid cycle
           ## check if first is greater than 1999 and less than 2020
           if(first < 1999 || first > 2020 || last > 2020){
@@ -147,23 +146,11 @@ nhanes_table <- function(year, type = NULL, variables = NULL, demographics = F){
   } ## end of non-null inputs
   ## input the cycles into the RNHANES command to retrieve the data of interest
   # nhanes_load_data(file_name = type, year = input_year, demographics = demographics)
-  nhanes_load_data(file_name = "EPH", year = input_year, demographics = demographics)
+  RNHANES::nhanes_load_data(file_name = "EPH", year = input_year, demographics = demographics)
 
   ## filter the data for the specific variables
 }
 
 ## output the dataframe into a publication ready format
 
-#' Title
-#'
-#' @inheritParams nhanes_table
-#' @param year
-#' @param variables
-#'
-#' @return
-#'
-#'
-#' @examples
-Ngraph_table <- function(year, variables){
 
-}
