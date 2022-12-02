@@ -43,12 +43,9 @@ devtools::install_github("minjee-kim/nhanesGraph")
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
-library(nhanesGraphR)
+#library(nhanesGraph)
 
-Ngraph_table("2001 - 2010", "exam")
-#> NULL
+#nhanes_table("EPH","2007-2008")
 ```
 
 There will be a plot that looks much nicer than this :)
-
-<img src="man/figures/README-pressure-1.png" width="100%" />

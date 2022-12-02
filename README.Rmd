@@ -22,18 +22,18 @@ The goal of nhanesGraphR is to provide an interactive graphical tools for the us
 
 
 # Intermediate Project Update
-So far, I have a function that retrieves data from the CDC website with more flexible commands and a function that outputs the data into a publication ready table. My intention is to finish 
+So far, I have a function that retrieves data from the CDC website with more flexible commands and a function that outputs the data into a publication ready table. 
 
-To do: 
-make the vignette look much nicer 
-finish writing the function that outputs publication ready tables using the sjPlot package
-add variable search via nhanesA 
-finish the function for interactive plots 
-finish documentation
-make the nhnaes_table to allow: 
-  1. make the input case insensitive  
-  2. downloading without year specification
-  3. if type and variables do not agree (variables specified by the user are not in the specified type), ask if the user wants both (display yes or no)
+To do: \
+make the vignette look much nicer \
+finish writing the function that outputs publication ready tables using the sjPlot package <br>
+add variable search via nhanesA  <br>
+finish the function for interactive plots \
+finish documentation <br>
+make the nhnaes_table to allow:  
+  \ 1. make the input case insensitive \
+  \ 2. downloading without year specification \
+  \ 3. if type and variables do not agree (variables specified by the user are not in the specified type), ask if the user wants both (display yes or no)
 
 
 ## Installation
