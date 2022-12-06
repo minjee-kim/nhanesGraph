@@ -13,7 +13,7 @@
 #' @return shiny app
 #' @export
 #'
-nGraph_shiny <- function() {
+nGraph_search <- function() {
   appDir <- system.file("nGraph_search", "myapp", package = "nhanesGraph")
   if (appDir == "") {
     stop("Could not find the directory. Try re-installing `nhanesGraph`.", call. = FALSE)
