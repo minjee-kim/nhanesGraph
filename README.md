@@ -1,6 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+CODECOV_TOKEN=52721b18-0aff-4ed8-b515-2c348f7cc091
+
 # nhanesGraph
 
 <!-- badges: start -->
@@ -8,32 +10,16 @@
 [![R-CMD-check](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of nhanesGraph is to provide an interactive graphical tools for
-the users to access more easily. This package utilizes RNHANES, nhanesA,
-and Shiny packages.
-
-# Intermediate Project Update
-
-So far, I have a function that retrieves data from the CDC website with
-more flexible commands and a function that outputs the data into a
-publication ready table.
-
-To do:  
-make the vignette look much nicer  
-finish writing the function that outputs publication ready tables using
-the sjPlot package <br> add variable search via nhanesA <br> finish the
-function for interactive plots  
-finish documentation <br> make the nhnaes_table to allow:  
- 1. make the input case insensitive  
- 2. downloading without year specification  
- 3. if type and variables do not agree (variables specified by the user
-are not in the specified type), ask if the user wants both (display yes
-or no)
+nhanesGraph is a package that provides an accessible and interactive way
+for users to export NHANES data as well as view data trends via Shiny
+package. This package is an extension of the
+[RNHANES](https://cran.r-project.org/web/packages/RNHANES/vignettes/introduction.html)
+package created by Herb Susmann.
 
 ## Installation
 
 You can install the development version of nhanesGraph from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/minjee-kim/nhanesGraph) with:
 
 ``` r
 # install.packages("devtools")
@@ -42,15 +28,17 @@ devtools::install_github("minjee-kim/nhanesGraph")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+Users are able to search the NHANES file of interest via nGraph_search()
+Shiny app.
+
+For a console command, users can access nhanes_table function
 
 ``` r
 library(nhanesGraph)
 
+#nGraph_search()
 head(nhanes_table("2007-2008", "EPH"))
-#> [1] 2007
-#> [1] 2008
-#> Downloading EPH_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp76CKAr/EPH_E.XPT
+#> Downloading EPH_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp8czzXi/EPH_E.XPT
 #>    SEQN   WTSB2YR URXUCR URX4TO URD4TOLC URXBP3 URDBP3LC URXBPH URDBPHLC URXTRS
 #> 1 41476 120437.91     72   0.14        1    5.5        0    2.3        0   75.5
 #> 2 41479  30191.58    124   0.14        1   31.2        0    1.1        0    7.4
