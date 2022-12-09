@@ -4,16 +4,16 @@
 \alias{nhanes_table}
 \title{Loading NHANES data with a flexible year input}
 \usage{
-nhanes_table(year, type = NULL, variables = NULL, demographics = F)
+nhanes_table(year = NULL, file_name = NULL, demographics = F, recode = F)
 }
 \arguments{
 \item{year}{a numeric value of a year or string objective of a range year}
 
-\item{type}{type of files}
+\item{file_name}{name of the file that the user wishes to load (required)}
 
-\item{variables}{a list or a specific variable the user is interested in. Search for a specific variable using the "nhanesA::nhanesTableVars('EXAM', 'BMX_D')"}
+\item{demographics}{logical value - whether to include a demographic information (inherited from RNHANES::nhanes_search())}
 
-\item{demographics}{logical value - whether to include a demographic information or not}
+\item{recode}{logical value - whether to recode the categorical variables into integers (inherited from RNHANES::nhanes_search())}
 }
 \value{
 an NHANES data table with user specified parameters
@@ -22,5 +22,5 @@ an NHANES data table with user specified parameters
 Loading NHANES data with a flexible year input
 }
 \examples{
-nhanes_table("2007-2008","EPH")
+nhanes_table("2009","EPH")
 }
