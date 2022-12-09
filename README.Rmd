@@ -14,7 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-CODECOV_TOKEN=52721b18-0aff-4ed8-b515-2c348f7cc091
 
 # nhanesGraph
 
@@ -39,12 +38,12 @@ Users are able to search the NHANES file of interest via nGraph_search() Shiny a
 
 
 
-For a console command, users can access nhanes_table function 
+For a console command, users can access the data by specifying the year, file name, and whether they want to include demographic information in their data. 
+
 
 ```{r example}
 library(nhanesGraph)
 
-#nGraph_search()
 head(nhanes_table("2007-2008", "EPH"))
 
 ```

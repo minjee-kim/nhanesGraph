@@ -1,8 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-CODECOV_TOKEN=52721b18-0aff-4ed8-b515-2c348f7cc091
-
 # nhanesGraph
 
 <!-- badges: start -->
@@ -31,14 +29,15 @@ devtools::install_github("minjee-kim/nhanesGraph")
 Users are able to search the NHANES file of interest via nGraph_search()
 Shiny app.
 
-For a console command, users can access nhanes_table function
+For a console command, users can access the data by specifying the year,
+file name, and whether they want to include demographic information in
+their data.
 
 ``` r
 library(nhanesGraph)
 
-#nGraph_search()
 head(nhanes_table("2007-2008", "EPH"))
-#> Downloading EPH_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp8czzXi/EPH_E.XPT
+#> Downloading EPH_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9Iw7z6/EPH_E.XPT
 #>    SEQN   WTSB2YR URXUCR URX4TO URD4TOLC URXBP3 URDBP3LC URXBPH URDBPHLC URXTRS
 #> 1 41476 120437.91     72   0.14        1    5.5        0    2.3        0   75.5
 #> 2 41479  30191.58    124   0.14        1   31.2        0    1.1        0    7.4
