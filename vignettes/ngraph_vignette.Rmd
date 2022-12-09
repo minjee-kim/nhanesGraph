@@ -1,11 +1,17 @@
 ---
-title: "This is the title"
+title: "Introduction to nhanesGraph"
+author: Minjee Kim
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{This is the title}
+  %\VignetteIndexEntry{Introduction to nhanesGraph}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+
+nhanesGraph provides an easy way to access and visualize data from [NHANES](https://www.cdc.gov/nchs/nhanes/index.htm?CDC_AA_refVal=https%3A%2F%2Fwww.cdc.gov%2Fnchs%2Fnhanes.htm), the National Health and Nutrition Examination Survey conducted by the Centers for Disease Control. 
+This package serves as an extension to the [RNHANES](https://cran.r-project.org/web/packages/RNHANES/vignettes/introduction.html) package created by [Herb Susmann](http://herbsusmann.com/). 
+
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
@@ -14,6 +20,69 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+The package invites the users to get started by installing the package from the [github](https://github.com/minjee-kim/nhanesGraph) repository via devtools. 
 ```{r setup}
+# install.packages("devtools")
+#devtools::install_github("minjee-kim/nhanesGraph")
 library(nhanesGraph)
 ```
+
+
+## NHANES 
+
+
+## Loading Data
+nhanes_table function extends the nhanes_load_data() function in the RNHANES package. The file_name argument is necessary to run the code successfully. 
+
+Previously, any function in RNHANES package required the users to specify the year input with a specific cycle format of "2007-2008." nhanes_table allows more flexible inputs such as any numeric year within 1999-2016 and a single year string input. 
+```{r example}
+EPH2007data1 <- nhanes_table("2007","EPH")
+head(EPH2007data1)
+
+EPH2007data2 <- nhanes_table(2007,"EPH")
+head(EPH2007data2)
+
+EPH2007data3 <- nhanes_table("2007-2008","EPH")
+head(EPH2007data3)
+```
+
+
+Furthermore, when the year input includes multiple cycles, users are asked to choose from the cycle options via console. 
+
+```{r image1, echo=FALSE, fig.cap="Option Display", out.width = '100%'}
+knitr::include_graphics("choose_cycle.png")
+```
+
+Choosing the option 3, the "DEMO" file in the cycle 2013-2014 will display. 
+
+```{r image2, echo=FALSE, fig.cap="Data Display", out.width = '100%'}
+knitr::include_graphics("option3_DEMO.png")
+```
+
+### File Search
+
+When the nhanes_table function is inputted without specifying the file name, the ngraph_search Shiny app will launch to help the users search for the desired file. Currently, it is necessary for the users to exit the Shiny App by clicking the "close window" button on the top left corner of the Shiny app to avoid any conflict with the R session. 
+```{r image3, echo=FALSE, fig.cap="File Search Option", out.width = '100%'}
+knitr::include_graphics("file_search.png")
+```
+
+
+Selecting "a", the Shiny app will launch. 
+
+
+```{r image4, echo=FALSE, fig.cap="Shiny Display", out.width = '100%'}
+knitr::include_graphics("nGraph_search.png")
+```
+
+The Shiny app for searching the files can also be accessed with the function ngraph_search(). 
+```{r}
+# nGraph_search()
+```
+
+
+## Data Visualization
+
+
+
+
