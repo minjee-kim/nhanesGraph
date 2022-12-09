@@ -10,7 +10,7 @@
 
 #' run shiny app with nhanesGraph package
 #'
-#' @return shiny app
+#' @return nGraph_search Shiny app
 #' @export
 #'
 nGraph_search <- function() {

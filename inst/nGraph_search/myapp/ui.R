@@ -1,30 +1,43 @@
 
 ## user interface for shiny app
-
+#install.packages("DT")
+#library(DT)
 ui <- fluidPage(
+
+  ## exit button
+  tags$button(
+    id = 'close',
+    type = "button",
+    class = "btn action-button",
+    onclick = "setTimeout(function(){window.close();},500);",  # close browser
+    "Close window"
+  ),
+
+  ## title and background
   titlePanel("Search NHANES files with nhanesGraph Package"),
   shinyWidgets::setBackgroundColor(
-    color = c("#FFF0F5")
+    color = c("#f2f0ff")
   ),
 
-  fluidRow(
-    column(3,
-           selectInput("cycle", h3("Choose a cycle:"),
-                       choices =  RNHANES::nhanes_cycle_years(), selected = 1)),
+  ## user inputs
+  sidebarLayout(
+    sidebarPanel(
+      helpText("Search NHANES files from 1999-2016"),
 
-    column(2,
-           selectInput("component", h3("Choose a component:"),
-                       choices = list("all" = 1, "demographics" = 2,
-                                      "dietary" = 3, "examination" = 4,
-                                      "laboratory" = 5,  "questionnaire" = 6), selected = 1))
-    # column(3,
-    #   selecInput(
-    #     inputId = "searchme",
-    #     label = "Search Bar",
-    #     multiple = FALSE,
-    #     choices = c("Search Bar" = "", paste0(LETTERS,sample(LETTERS, 26))),
-    #   ))
+      selectInput("cycle", h3("Choose a cycle:"),
+                  choices =  RNHANES::nhanes_cycle_years(), selected = 1),
 
-  ),
-  tableOutput("result"),
+      selectInput("component", h3("Choose a component:"),
+                  choices = list("all" , "demographics",
+                                 "dietary", "examination",
+                                 "laboratory",  "questionnaire" ))),
+    # textInput("searchme",
+    #           label = "Search Bar",
+    #           value = "")),
+
+    mainPanel(
+      #DT::dataTableOutput("result")
+      dataTableOutput("result")
+    )
+  )
 )
