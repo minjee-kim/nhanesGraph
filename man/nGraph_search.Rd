@@ -7,7 +7,7 @@
 nGraph_search()
 }
 \value{
-shiny app
+nGraph_search Shiny app
 }
 \description{
 run shiny app with nhanesGraph package
