@@ -12,7 +12,6 @@
 #' @return nGraph_shiny Shiny app
 #' @export
 #'
-#' @examples
 nGraph_variable <- function() {
   appDir <- system.file("nGraph_variable", "MyApp", package = "nhanesGraph")
   if (appDir == "") {
