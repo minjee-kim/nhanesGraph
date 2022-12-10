@@ -56,23 +56,25 @@ server <- function(input, output){
     variable_name <- var_list[var_list$variable_description == variable_des,]$variable_name
     variable_list <- paste(paste("(", variable_name, ")", sep = ""), variable_des, sep = " ")
     # render selectizeInput
+    variable_list = unique(factor(variable_list))
     selectizeInput("variable", "Variables",
                    choices = c(variable_list))
   })
+
 
   output$plot <- renderTable({
 
     ## filter with the cycle first
     data = nhanes_variable_list[nhanes_variable_list$cycle == input$cycle,]
 
+    var_name = req(input$variable)
     ## getting the variable name from the input
-    var = paste(gsub("\\(*", "", (gsub(").*$", "", input$variable))))
+    var = paste(gsub("\\(*", "", (gsub(").*$", "", var_name))))
 
     ## get the file name using the variable name
-    file = data[data$variable_name == var, ]$data_file_name
+    data[data$variable_name == var, ]
 
-    data = nhanes_table(input$cycle, file)
-    data
+
   })
 
 

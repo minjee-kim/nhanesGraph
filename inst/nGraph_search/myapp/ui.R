@@ -16,7 +16,7 @@ ui <- fluidPage(
   ## title and background
   titlePanel("Search NHANES files with nhanesGraph Package"),
   shinyWidgets::setBackgroundColor(
-    color = c("#f2f0ff")
+    color = c("#FFF0F5")
   ),
 
   ## user inputs
