@@ -13,8 +13,8 @@
 #' @export
 #'
 #' @examples
-nGraph_shiny <- function() {
-  appDir <- system.file("nGraph_shiny", "MyApp", package = "nhanesGraph")
+nGraph_variable <- function() {
+  appDir <- system.file("nGraph_variable", "MyApp", package = "nhanesGraph")
   if (appDir == "") {
     stop("Could not find the directory. Try re-installing `nhanesGraph`.", call. = FALSE)
   }
