@@ -36,7 +36,7 @@ library(nhanesGraph)
 nhanes_table function extends the nhanes_load_data() function in the RNHANES package. The file_name argument is necessary to run the code successfully. 
 
 Previously, any function in RNHANES package required the users to specify the year input with a specific cycle format of "2007-2008." nhanes_table allows more flexible inputs such as any numeric year within 1999-2016 and a single year string input. 
-```{r example}
+```{r example, eval=F}
 EPH2007data1 <- nhanes_table("2007","EPH")
 head(EPH2007data1)
 
@@ -71,18 +71,26 @@ knitr::include_graphics("file_search.png")
 Selecting "a", the Shiny app will launch. 
 
 
-```{r image4, echo=FALSE, fig.cap="Shiny Display", out.width = '100%'}
+```{r image4, echo=FALSE, fig.cap="nGraph_search Display", out.width = '100%'}
 knitr::include_graphics("nGraph_search.png")
 ```
 
 The Shiny app for searching the files can also be accessed with the function ngraph_search(). 
-```{r}
-# nGraph_search()
+```{r, eval=F}
+nGraph_search()
 ```
 
 
 ## Data Visualization
 
 
+### Variable Search 
 
+To explore the variables for a particular file, cycle, or component, users can access the Shiny app for variable search via nGraph_variable() function. 
+```{r, eval = F}
+nGraph_variable()
+```
 
+```{r image5, echo=FALSE, fig.cap="nGraph_variable Display", out.width = '100%'}
+knitr::include_graphics("nGraph_variable.png")
+```
