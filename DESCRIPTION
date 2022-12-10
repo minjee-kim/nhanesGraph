@@ -15,7 +15,8 @@ Imports:
     dplyr,
     ggplot2,
     RNHANES (>= 1.1.0),
-    shiny
+    shiny,
+    stats
 Remotes: 
     SilentSpringInstitute/RNHANES
 Suggests: 
