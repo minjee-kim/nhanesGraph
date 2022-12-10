@@ -1,28 +1,48 @@
 
 ## preliminary function that outputs graphs accordingly
-viz <- function(type, data, var){
+#' Visualize variables
+#'
+#' @param type type of data, inherited from nhanes_viz
+#' @param dat data, filtered using file_name and cycle
+#' @param var variable name, inherited from nhanes_viz
+#' @export
+#' @return ggplot graph
+#'
+viz <- function(type, dat, var){
 
   ## make sure the type of the graph is flexible
   type = tolower(type)
+
   if(grepl(type, "hist")){
-    graph = ggplot(data, aes(x = factor(data[,var]))) + geom_histogram(color = "black", fill="pink1", stat = "count", binwidth=1) + xlab(var)
-  }else if(grepl(type, "box")){
-    graph = ggplot(data, aes( factor(data[,var]))) + geom_boxplot(fill = "mediumpurple")
+  graph = ggplot2::ggplot(dat, aes(as.factor(dat[,var]))) + geom_histogram(stat = "count", fill = "#ff80aa")
   }
   return(graph)
 }
 
 
-
 ## function for trend visualization
 
+#' Visualize NHANES Variables
+#'
+#' @param graph_type type of graph: c("Hist", "pie")
+#' @param file_name specific file name
+#' @param variable variable name
+#'
+#' @return a ggplot with specified inputs for the variable of interest
+#' @export
+#'
+#' @examples nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
 nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
 
   ## call the nhanes_variable_list file from the package
-  data_var_list = nhanesGraph::nhanes_variable_list
+  data_var_list = nhanes_variable_list
+  if(is.null(file_name) == F && is.null(variable) == F){
+    year_input = unique(data_var_list[data_var_list$data_file_name == file_name,]$cycle)
+    data <- as.data.frame(nhanes_table(year = year_input, file_name = file_name ))
+    return(viz(type = graph_type, dat = data, var = variable))
+  }else if(is.null(file_name) && is.null(variable) == T){
+    ## if both file name and variable are empty, ask whether to display ngraph_variable
 
-  ## if both file name and variable are empty, ask whether to display ngraph_variable
-  if(is.null(file_name) && is.null(variable) == T){
     cat("Both file_name and variable inputs are empty.")
     user_ans = readline(prompt = "Would you like to explore the options via nGraph_variable? \n Press a to continue. Press q to exit.")
     if(user_ans == "q"){
@@ -37,14 +57,17 @@ nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
 
     ## if file name is null, search for the file name
     # filter variable data using the inputted variable
-    data_filter = data_var_list %>% filter(variable_name == variable) %>% filter(use_constraints == "None")
+   # data_filter = data_var_list %>% filter(variable_name == variable) %>% filter(use_constraints == "None")
+
+    data_filter = data_var_list[data_var_list$use_constraints == "None",]
+    data_filter = data_filter[data_filter$variable_name == variable,]
     if(nrow(data_filter) == 0){
       ## stop if there is no matching name
       stop("Couldn't find the variable you listed!")
     }else if(nrow(data_filter) == 1){
       ## if there is a unique row with the specified variable name, proceed with the file name
       data = nhanes_table(year = paste(data_filter$cycle), data_filter$data_file_name)
-      viz(type = graph_type, data, var = variable)
+      return(viz(type = graph_type, dat = data, var = paste(variable)))
     }else{
       ## if there are multiple cycles with the same variable name, ask which cycle to work with
       cycles = data_filter$cycle
@@ -63,7 +86,7 @@ nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
           file_name = data_filter[data_filter$cycle == cycles[user_ans],]$data_file_name
           ## get the data from nhanes table with the corresponding inputs
           data = nhanes_table(year = cycles[user_ans], file_name = file_name)
-          viz(type = graph_type, data = data, var = variable)
+          return(viz(type = graph_type, dat = data, var = variable))
         }else{
           stop("Please choose one of the options!")}
 
@@ -97,7 +120,7 @@ nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
 
         ## get the data from nhanes table with the corresponding inputs
         data = nhanes_table(year = cycles, file_name = file_name)
-        viz(type = graph_type, data = data, var = var_list[user_ans])
+        return(viz(type = graph_type, dat = data, var = paste(var_list[user_ans])))
       }else{
         stop("Please choose one of the options!")}
     }else if(length(cycles) > 1){
@@ -128,7 +151,7 @@ nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
 
           ## get the data from nhanes table with the corresponding inputs
           data = nhanes_table(year = year_input, file_name = file_name)
-          viz(type = graph_type, data = data, var = var_list[user_ans])
+          return(viz(type = graph_type, dat = data, var = paste(var_list[user_ans])))
         }
       }else{
         stop("Please choose one of the options!")}
