@@ -3,3 +3,8 @@
 export(nGraph_search)
 export(nGraph_variable)
 export(nhanes_table)
+export(nhanes_viz)
+export(viz)
+import(ggplot2)
+importFrom(dplyr,filter)
+importFrom(stats,filter)
