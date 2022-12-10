@@ -16,7 +16,7 @@ viz <- function(type, data, var){
 
 ## function for trend visualization
 
-nhanes_viz <- function(graph_type = c("Hist"), file_name = NULL, variable = NULL){
+nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
 
   ## call the nhanes_variable_list file from the package
   data_var_list = nhanesGraph::nhanes_variable_list
@@ -44,7 +44,7 @@ nhanes_viz <- function(graph_type = c("Hist"), file_name = NULL, variable = NULL
     }else if(nrow(data_filter) == 1){
       ## if there is a unique row with the specified variable name, proceed with the file name
       data = nhanes_table(year = paste(data_filter$cycle), data_filter$data_file_name)
-
+      viz(type = graph_type, data, var = variable)
     }else{
       ## if there are multiple cycles with the same variable name, ask which cycle to work with
       cycles = data_filter$cycle
@@ -57,11 +57,15 @@ nhanes_viz <- function(graph_type = c("Hist"), file_name = NULL, variable = NULL
         print("safely stoped.")
         stop("")
         }else if(user_ans %in% seq(1:length(cycles))){
+          ## check that the user input is one of the options
           user_ans = as.numeric(user_ans)
+          ## get the file name from the filtered data
           file_name = data_filter[data_filter$cycle == cycles[user_ans],]$data_file_name
+          ## get the data from nhanes table with the corresponding inputs
           data = nhanes_table(year = cycles[user_ans], file_name = file_name)
-
-        }
+          viz(type = graph_type, data = data, var = variable)
+        }else{
+          stop("Please choose one of the options!")}
 
     }
 
@@ -71,10 +75,64 @@ nhanes_viz <- function(graph_type = c("Hist"), file_name = NULL, variable = NULL
     print("No variable name inputted. Proceeding with caution.")
 
     ## if variable is null
-    ## output a list of variables
 
-    data_var_list[data_var_list$data_file_name == file_name,]$variable_name
+    ## check whether there is one cycle corresponding to the file
+    cycles = unique(data_var_list[data_var_list$data_file_name == file_name,]$cycle)
+    if(length(cycles) == 1){
+      ## if the cycle is unique
 
+      ## output a list of variables
+      var_list = (data_var_list[data_var_list$data_file_name == file_name,]$variable_name)
+      cat("Here are the variables in the file you chose.")
+      cat('\n')
+      cat(paste(seq(1:length(var_list)),".", var_list, sep = ""), sep = "\n")
+      user_ans = readline(prompt = "Please choose one of the options! Press q if you'd like to exit. ")
+      if(user_ans == "q"){
+        print("safely stoped.")
+        stop("")
+      }else if(user_ans %in% seq(1:length(var_list))){
+        ## check that the user input is one of the options
+        user_ans = as.numeric(user_ans)
+        ## get the file name from the filtered data
+
+        ## get the data from nhanes table with the corresponding inputs
+        data = nhanes_table(year = cycles, file_name = file_name)
+        viz(type = graph_type, data = data, var = var_list[user_ans])
+      }else{
+        stop("Please choose one of the options!")}
+    }else if(length(cycles) > 1){
+
+      cat("It seems like there are multiple cycles corresponding to the variable.")
+      cat('\n')
+      cat(paste(seq(1:length(cycles)),".", cycles, sep = ""), sep = "\n")
+      user_ans = readline(prompt = "Choose a cycle! Press q if you'd like to exit. ")
+      if(user_ans == "q"){
+        print("safely stoped.")
+        stop("")
+      }else if(user_ans %in% seq(1:length(cycles))){
+        ## check that the user input is one of the options
+        user_ans = as.numeric(user_ans)
+        year_input = cycles[user_ans]
+        var_list = data_var_list[data_var_list$cycle == year_input,]$variable_name
+
+        cat("Here are the variables in the file you chose.")
+        cat('\n')
+        cat(paste(seq(1:length(var_list)),".", var_list, sep = ""), sep = "\n")
+        user_ans = readline(prompt = "Please choose one of the options! Press q if you'd like to exit. ")
+        if(user_ans == "q"){
+          print("safely stoped.")
+          stop("")
+        }else if(user_ans %in% seq(1:length(var_list))){
+          ## check that the user input is one of the options
+          user_ans = as.numeric(user_ans)
+
+          ## get the data from nhanes table with the corresponding inputs
+          data = nhanes_table(year = year_input, file_name = file_name)
+          viz(type = graph_type, data = data, var = var_list[user_ans])
+        }
+      }else{
+        stop("Please choose one of the options!")}
+    }
 
 
   }
