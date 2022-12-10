@@ -72,7 +72,7 @@ Selecting "a", the Shiny app will launch.
 
 
 ```{r image4, echo=FALSE, fig.cap="nGraph_search Display", out.width = '100%'}
-knitr::include_graphics("nGraph_search.png")
+knitr::include_graphics("ngraph_search.png")
 ```
 
 The Shiny app for searching the files can also be accessed with the function ngraph_search(). 
@@ -92,5 +92,5 @@ nGraph_variable()
 ```
 
 ```{r image5, echo=FALSE, fig.cap="nGraph_variable Display", out.width = '100%'}
-knitr::include_graphics("nGraph_variable.png")
+knitr::include_graphics("ngraph_variable.png")
 ```
