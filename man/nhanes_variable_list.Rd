@@ -5,10 +5,10 @@
 \alias{nhanes_variable_list}
 \title{This is data to be included in my package}
 \format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 60383 rows and 10 columns.
+An object of class \code{data.frame} with 60383 rows and 10 columns.
 }
 \usage{
-nhanes_variable_list
+data("nhanes_variable_list")
 }
 \description{
 This is data to be included in my package
