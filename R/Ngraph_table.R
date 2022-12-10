@@ -81,7 +81,7 @@ nhanes_table <- function(year = NULL, file_name = NULL, demographics = F, recode
     ## if the file_name is present
     ## making sure the year input isn't empty
     if(is.null(year) == T ){
-      stop("working on it:)")
+      stop("Try again with a year input!")
     }else{
       ## if there is a single value for the year, output a message that indicates the cycle
 
