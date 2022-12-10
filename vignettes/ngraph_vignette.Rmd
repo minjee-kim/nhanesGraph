@@ -24,13 +24,13 @@ knitr::opts_chunk$set(
 The package invites the users to get started by installing the package from the [github](https://github.com/minjee-kim/nhanesGraph) repository via devtools. 
 ```{r setup}
 # install.packages("devtools")
-#devtools::install_github("minjee-kim/nhanesGraph")
+# devtools::install_github("minjee-kim/nhanesGraph")
 library(nhanesGraph)
 ```
 
-
 ## NHANES 
-
+NHANES is a national database of biomarker data that contains demographic, dietary, examination, laboratory, and questionnaire components. [Read more about NHANES](https://www.cdc.gov/nchs/nhanes/about_nhanes.htm) 
+Continuous NHANES is a series of survey and examination of non-institutionalized residents of the United States, collected by the CDC since 1999. Although this database is widely used for research, the files are often difficult to work with using R. This package provides Shiny apps to help the users explore the various files and variables that NHANES has to offer using R, as well as access the data with more user friendly inputs. 
 
 ## Loading Data
 nhanes_table function extends the nhanes_load_data() function in the RNHANES package. The file_name argument is necessary to run the code successfully. 
@@ -83,6 +83,13 @@ nGraph_search()
 
 ## Data Visualization
 
+Although it is quite diffult to view the overall trend of each data file, this package attempts to help the users visualize the trend of each variable. nhanes_viz function takes graph type (currently, the only available options are histograms and pie charts), file name, and variable name. 
+
+A basic example of nhanes_viz function: 
+```{r}
+nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
+```
+
 
 ### Variable Search 
 
@@ -94,3 +101,6 @@ nGraph_variable()
 ```{r image5, echo=FALSE, fig.cap="nGraph_variable Display", out.width = '100%'}
 knitr::include_graphics("ngraph_variable.png")
 ```
+
+
+## Future Work 
