@@ -6,7 +6,7 @@
 \alias{nhanesGraph-package}
 \title{nhanesGraph: Graphical tools for NHANES data}
 \description{
-Visualization tool for the US National Health and Nutrition Examination Survey.
+Graphical data search tool for the US National Health and Nutrition Examination Survey data.
 }
 \author{
 \strong{Maintainer}: Minjee Kim \email{minjeekim0804@tamu.edu} (\href{https://orcid.org/0000-0002-2001-2442}{ORCID})

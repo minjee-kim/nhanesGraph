@@ -1,22 +1,21 @@
 Package: nhanesGraph
 Title: Graphical tools for NHANES data
-Version: 0.0.0.9000
+Version: 1.0.0
 Authors@R: 
     person("Minjee", "Kim", 
     email = "minjeekim0804@tamu.edu", 
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-2001-2442"))
-Description: Visualization tool for the US National Health and Nutrition Examination Survey.
+Description: Graphical data search tool for the US National Health and Nutrition Examination Survey data.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.2
+RoxygenNote: 7.2.3
 Imports: 
-    dplyr,
     ggplot2,
     RNHANES (>= 1.1.0),
-    shiny,
-    stats
+    shiny, 
+    dplyr
 Remotes: 
     SilentSpringInstitute/RNHANES
 Suggests: 
