@@ -5,7 +5,6 @@
 #' @param type type of data, inherited from nhanes_viz
 #' @param dat data, filtered using file_name and cycle
 #' @param var variable name, inherited from nhanes_viz
-#' @export
 #' @return ggplot graph
 #'
 viz <- function(type, dat, var){
@@ -14,12 +13,11 @@ viz <- function(type, dat, var){
   type = tolower(type)
 
   if(grepl(type, "hist")){
-  graph = ggplot2::ggplot(dat, aes(as.factor(dat[,var]))) + geom_histogram(stat = "count", fill = "#ff80aa") + xlab(paste(var))
+  graph = ggplot2::ggplot(dat, aes(as.factor(dat[,var]))) + geom_histogram(color = "black",stat = "count", fill = "#ff80aa") + xlab(paste(var))
   }
   return(graph)
 }
 
-viz(type = "hist", dat = data, var = variable)
 
 
 ## function for trend visualization
