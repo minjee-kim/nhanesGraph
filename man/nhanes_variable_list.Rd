@@ -8,7 +8,7 @@
 An object of class \code{data.frame} with 60383 rows and 10 columns.
 }
 \usage{
-data("nhanes_variable_list")
+nhanes_variable_list
 }
 \description{
 This is data to be included in my package
