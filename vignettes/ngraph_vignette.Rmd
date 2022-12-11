@@ -110,7 +110,7 @@ nhanes_viz(graph_type = "Hist", variable = "ENAATMPT")
 By selecting the 2007-2008 option (option number 1), the function displays the same graph as the graph displayed by the basic example. This is because the "ENX_E" file inputted in the basic example is a file from the 2007-2008 cycle. 
 
 ```{r image6, echo=FALSE, fig.cap="nhanes_viz Null File Input Display", out.width = '100%'}
-knitr::include_graphics("nhanes_viz null file.png")
+knitr::include_graphics("nhanes_viz_null_file.png")
 ```
 
 
@@ -120,7 +120,7 @@ nhanes_viz(graph_type = "Hist", file_name = "ENX_E")
 ```
 
 ```{r image99, echo=FALSE, fig.cap="nhanes_viz Null Variable Display", out.width = '75%'}
-knitr::include_graphics("nhanes_viz variable option.png")
+knitr::include_graphics("nhanes_viz_variable_option.png")
 ```
 
 By selecting "ENAATMPT" with option 1, the graph from basic example displays. 
