@@ -47,14 +47,27 @@ EPH2007data3 <- nhanes_table("2007-2008","EPH")
 head(EPH2007data3)
 ```
 
+As the nhanes_table function serves as an extension of the RNHANES::nhanes_load_data() function, it inherits demographics and recode parameters from the pre-existing function. The logical demographics parameter decides whether to include the demographic information of the samples in the file, and the logical recode parameter allows the users to read the categorical variables as their character values, rather than as factors. 
+```{r}
+colnames(nhanes_table("2009-2010","UAS_F"))
 
-Furthermore, when the year input includes multiple cycles, users are asked to choose from the cycle options via console. 
+colnames(nhanes_table("2009-2010","UAS_F", demographics = T, recode = T))
+```
+
+
+### Flexibility of Inputs
+
+Furthermore, when the year input for nhanes_table includes multiple cycles, users are asked to choose from the cycle options via console. 
+```{r, eval = F}
+nhanes_table(year = "2010-2016", file_name = "DEMO")
+```
+
 
 ```{r image1, echo=FALSE, fig.cap="Option Display", out.width = '100%'}
 knitr::include_graphics("choose_cycle.png")
 ```
 
-Choosing the option 3, the "DEMO" file in the cycle 2013-2014 will display. 
+Choosing the option 3, the "DEMO" file in the cycle 2013-2014 displays. 
 
 ```{r image2, echo=FALSE, fig.cap="Data Display", out.width = '100%'}
 knitr::include_graphics("option3_DEMO.png")
@@ -62,13 +75,13 @@ knitr::include_graphics("option3_DEMO.png")
 
 ### File Search
 
-When the nhanes_table function is inputted without specifying the file name, the ngraph_search Shiny app will launch to help the users search for the desired file. Currently, it is necessary for the users to exit the Shiny App by clicking the "close window" button on the top left corner of the Shiny app to avoid any conflict with the R session. 
+When the nhanes_table function is inputted without specifying the file name, the ngraph_search Shiny app launches to help the users search for the desired file. Currently, it is necessary for the users to exit the Shiny App by clicking the "close window" button on the top left corner of the Shiny app to avoid any conflict with the R session. 
 ```{r image3, echo=FALSE, fig.cap="File Search Option", out.width = '100%'}
 knitr::include_graphics("file_search.png")
 ```
 
 
-Selecting "a", the Shiny app will launch. 
+Selecting "a", the nGraph_search Shiny app launches. 
 
 
 ```{r image4, echo=FALSE, fig.cap="nGraph_search Display", out.width = '100%'}
@@ -86,21 +99,57 @@ nGraph_search()
 Although it is quite diffult to view the overall trend of each data file, this package attempts to help the users visualize the trend of each variable. nhanes_viz function takes graph type (currently, the only available options are histograms and pie charts), file name, and variable name. 
 
 A basic example of nhanes_viz function: 
-```{r}
+```{r,dpi=150, out.width = '\\maxwidth'}
 nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
 ```
 
+If the file name is null but the variable is selected, nhanes_viz searches the files with the corresponding variable. If there are multiple files that contain the variable, the cycle options are displayed to work with the correct file. 
+```{r, eval = F}
+nhanes_viz(graph_type = "Hist", variable = "ENAATMPT")
+```
+By selecting the 2007-2008 option (option number 1), the function displays the same graph as the graph displayed by the basic example. This is because the "ENX_E" file inputted in the basic example is a file from the 2007-2008 cycle. 
+
+```{r image6, echo=FALSE, fig.cap="nhanes_viz Null File Input Display", out.width = '100%'}
+knitr::include_graphics("nhanes_viz null file.png")
+```
+
+
+If the file name is inputted but the variable is not specified, nhanes_viz displays the options of variables to visualize. 
+```{r, eval = F}
+nhanes_viz(graph_type = "Hist", file_name = "ENX_E")
+```
+
+```{r image99, echo=FALSE, fig.cap="nhanes_viz Null Variable Display", out.width = '75%'}
+knitr::include_graphics("nhanes_viz variable option.png")
+```
+
+By selecting "ENAATMPT" with option 1, the graph from basic example displays. 
 
 ### Variable Search 
 
+Similar to the nhanes_table function, users are able to exclude all three of the inputs to explore the variable options. With the null inputs, console displays an option to display the variable search Shiny app.
+```{r, eval=F}
+nhanes_viz()
+```
+
+```{r image7, echo=FALSE, fig.cap="nhanes_viz Null Input Option Display", out.width = '100%'}
+knitr::include_graphics("nhanes_viz_option.png")
+```
+
+Pressing a, the following Shiny app launches. 
+
+```{r image8, echo=FALSE, fig.cap="nGraph_variable Display", out.width = '100%'}
+knitr::include_graphics("ngraph_variable.png")
+```
+
 To explore the variables for a particular file, cycle, or component, users can access the Shiny app for variable search via nGraph_variable() function. 
+
 ```{r, eval = F}
 nGraph_variable()
 ```
 
-```{r image5, echo=FALSE, fig.cap="nGraph_variable Display", out.width = '100%'}
-knitr::include_graphics("ngraph_variable.png")
-```
-
 
 ## Future Work 
+The nhanesGraph package can be further extended to a cohesive Shiny app that allows users to explore the variable trends by specifying file name, cycle, and component. The graphical component can include much more diverse options, based on continuous and categorical variables. 
+
+
