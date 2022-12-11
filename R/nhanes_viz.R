@@ -14,10 +14,12 @@ viz <- function(type, dat, var){
   type = tolower(type)
 
   if(grepl(type, "hist")){
-  graph = ggplot2::ggplot(dat, aes(as.factor(dat[,var]))) + geom_histogram(stat = "count", fill = "#ff80aa")
+  graph = ggplot2::ggplot(dat, aes(as.factor(dat[,var]))) + geom_histogram(stat = "count", fill = "#ff80aa") + xlab(paste(var))
   }
   return(graph)
 }
+
+viz(type = "hist", dat = data, var = variable)
 
 
 ## function for trend visualization
@@ -34,6 +36,7 @@ viz <- function(type, dat, var){
 #' @examples nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
 nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
 
+  data("nhanes_file_list")
   ## call the nhanes_variable_list file from the package
   data_var_list = nhanes_variable_list
   if(is.null(file_name) == F && is.null(variable) == F){
