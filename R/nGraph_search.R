@@ -12,7 +12,6 @@
 #'
 #' @return nGraph_search Shiny app
 #' @export
-#' @example nGraph_search()
 nGraph_search <- function() {
   appDir <- system.file("nGraph_search", "myapp", package = "nhanesGraph")
   if (appDir == "") {
