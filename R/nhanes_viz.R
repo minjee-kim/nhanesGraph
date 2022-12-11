@@ -34,7 +34,6 @@ viz <- function(type, dat, var){
 #' @examples nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
 nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
 
-  data("nhanes_file_list")
   ## call the nhanes_variable_list file from the package
   data_var_list = nhanes_variable_list
   if(is.null(file_name) == F && is.null(variable) == F){
