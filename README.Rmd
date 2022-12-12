@@ -44,7 +44,7 @@ head(nhanes_table("2008", "EPH", demographics = T, recode = T))
 ```
 ### File Search 
 
-In order to specify the year and file inputs in the nhanes_table function, users can explore the NHANES files with nGraph_search Shiny app. The Shiny app can be launched with the folloing code: 
+In order to specify the year and file inputs in the nhanes_table function, users can explore the NHANES files with nGraph_search Shiny app. The Shiny app can be launched with the following code: 
 
 ```{r, eval = F}
 nGraph_search()
@@ -59,7 +59,7 @@ nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY2")
 
 ### Variable Search
 
-To explore all options of variables, ngraph_variable Shiny app can be used. The Shiny app can be launched with the following code: 
+To explore all options of variables, nGraph_variable Shiny app can be used. The Shiny app can be launched with the following code: 
 ```{r, eval=F}
 nGraph_variable()
 ```

@@ -37,11 +37,11 @@ categorical variables. By default, recode is False.
 library(nhanesGraph)
 
 head(nhanes_table("2008", "EPH", demographics = T, recode = T))
-#> Downloading EPH_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmptePzwt/EPH_E.XPT
-#> Downloading EPH_E.htm to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmptePzwt/EPH_E.htm
-#> Downloading DEMO_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmptePzwt/DEMO_E.XPT
-#> Caching CSV to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmptePzwt/DEMO_E.csv
-#> Downloading DEMO_E.htm to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmptePzwt/DEMO_E.htm
+#> Downloading EPH_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/EPH_E.XPT
+#> Downloading EPH_E.htm to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/EPH_E.htm
+#> Downloading DEMO_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/DEMO_E.XPT
+#> Caching CSV to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/DEMO_E.csv
+#> Downloading DEMO_E.htm to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/DEMO_E.htm
 #>    SEQN     cycle                        SDDSRVYR
 #> 1 41476 2007-2008 NHANES 2007-2008 Public Release
 #> 2 41479 2007-2008 NHANES 2007-2008 Public Release
@@ -167,7 +167,7 @@ head(nhanes_table("2008", "EPH", demographics = T, recode = T))
 
 In order to specify the year and file inputs in the nhanes_table
 function, users can explore the NHANES files with nGraph_search Shiny
-app. The Shiny app can be launched with the folloing code:
+app. The Shiny app can be launched with the following code:
 
 ``` r
 nGraph_search()
@@ -182,7 +182,7 @@ appropriate measures to search for the variable.
 
 ``` r
 nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY2")
-#> Downloading BPX_D.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmptePzwt/BPX_D.XPT
+#> Downloading BPX_D.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/BPX_D.XPT
 #> Warning: Ignoring unknown parameters: binwidth, bins, pad
 ```
 
@@ -190,7 +190,7 @@ nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY2")
 
 ### Variable Search
 
-To explore all options of variables, ngraph_variable Shiny app can be
+To explore all options of variables, nGraph_variable Shiny app can be
 used. The Shiny app can be launched with the following code:
 
 ``` r
