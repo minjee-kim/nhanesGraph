@@ -6,6 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/minjee-kim/nhanesGraph/branch/main/graph/badge.svg)](https://app.codecov.io/gh/minjee-kim/nhanesGraph?branch=main)
 <!-- badges: end -->
 
 nhanesGraph is a package that provides an accessible and interactive way
@@ -37,11 +39,11 @@ categorical variables. By default, recode is False.
 library(nhanesGraph)
 
 head(nhanes_table("2008", "EPH", demographics = T, recode = T))
-#> Downloading EPH_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/EPH_E.XPT
-#> Downloading EPH_E.htm to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/EPH_E.htm
-#> Downloading DEMO_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/DEMO_E.XPT
-#> Caching CSV to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/DEMO_E.csv
-#> Downloading DEMO_E.htm to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/DEMO_E.htm
+#> Downloading EPH_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmpEg9y7b/EPH_E.XPT
+#> Downloading EPH_E.htm to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmpEg9y7b/EPH_E.htm
+#> Downloading DEMO_E.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmpEg9y7b/DEMO_E.XPT
+#> Caching CSV to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmpEg9y7b/DEMO_E.csv
+#> Downloading DEMO_E.htm to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmpEg9y7b/DEMO_E.htm
 #>    SEQN     cycle                        SDDSRVYR
 #> 1 41476 2007-2008 NHANES 2007-2008 Public Release
 #> 2 41479 2007-2008 NHANES 2007-2008 Public Release
@@ -182,7 +184,7 @@ appropriate measures to search for the variable.
 
 ``` r
 nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY2")
-#> Downloading BPX_D.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//Rtmp9hwb6d/BPX_D.XPT
+#> Downloading BPX_D.XPT to /var/folders/cb/pm2sn91x1kl5y2ch704fh_8c0000gn/T//RtmpEg9y7b/BPX_D.XPT
 #> Warning: Ignoring unknown parameters: binwidth, bins, pad
 ```
 

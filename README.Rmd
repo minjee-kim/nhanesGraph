@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/minjee-kim/nhanesGraph/branch/main/graph/badge.svg)](https://app.codecov.io/gh/minjee-kim/nhanesGraph?branch=main)
 <!-- badges: end -->
 
 nhanesGraph is a package that provides an accessible and interactive way for users to export NHANES data as well as view data trends via Shiny package. This package is an extension of the [RNHANES](https://cran.r-project.org/web/packages/RNHANES/vignettes/introduction.html) package created by Herb Susmann. 
