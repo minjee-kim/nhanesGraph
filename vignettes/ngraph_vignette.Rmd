@@ -96,7 +96,8 @@ nGraph_search()
 
 ## Data Visualization
 
-Although it is quite diffult to view the overall trend of each data file, this package attempts to help the users visualize the trend of each variable. nhanes_viz function takes graph type (currently, the only available options are histograms and pie charts), file name, and variable name. 
+Although it is quite diffult to view the overall trend of each data file, this package attempts to help the users visualize the trend of each variable. nhanes_viz function takes graph type (currently, the only available option is histogram), file name, and variable name. 
+
 
 A basic example of nhanes_viz function: 
 ```{r,dpi=150, out.width = '\\maxwidth'}
