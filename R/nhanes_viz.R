@@ -18,13 +18,11 @@ viz <- function(type, dat, var){
   return(graph)
 }
 
-
-
 ## function for trend visualization
 
 #' Visualize NHANES Variables
 #'
-#' @param graph_type type of graph: c("Hist", "pie")
+#' @param graph_type type of graph: only Histograms are allowed, currently.
 #' @param file_name specific file name
 #' @param variable variable name
 #'
@@ -35,7 +33,11 @@ viz <- function(type, dat, var){
 nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
 
   ## call the nhanes_variable_list file from the package
-  data_var_list = nhanes_variable_list
+  #nhanes_variable_list <-   (nhanesGraph:::nhanes_variable_list)
+  #data("nhanes_variable_list", "nhanes_variable_list" , envir=environment())
+  #data(sysdata, envir=environment())
+  #data("model1", "mydata", package=pkgname, envir=parent.env(environment()))
+  data_var_list <- as.data.frame(nhanes_variable_list)
   if(is.null(file_name) == F && is.null(variable) == F){
     year_input = unique(data_var_list[data_var_list$data_file_name == file_name,]$cycle)
     data <- as.data.frame(nhanes_table(year = year_input, file_name = file_name ))
@@ -67,7 +69,7 @@ nhanes_viz <- function(graph_type = "Hist", file_name = NULL, variable = NULL){
     }else if(nrow(data_filter) == 1){
       ## if there is a unique row with the specified variable name, proceed with the file name
       data = nhanes_table(year = paste(data_filter$cycle), data_filter$data_file_name)
-      return(viz(type = graph_type, dat = data, var = paste(variable)))
+      return(viz(type = graph_type, dat = data, var = variable))
     }else{
       ## if there are multiple cycles with the same variable name, ask which cycle to work with
       cycles = data_filter$cycle

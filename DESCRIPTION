@@ -24,4 +24,3 @@ Suggests:
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
-LazyData: true
