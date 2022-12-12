@@ -14,7 +14,9 @@ RoxygenNote: 7.2.3
 Imports: 
     ggplot2,
     RNHANES (>= 1.1.0),
-    shiny
+    shiny, 
+    shiny,
+    shinyWidgets
 Remotes: 
     SilentSpringInstitute/RNHANES
 Suggests: 
