@@ -153,4 +153,36 @@ nGraph_variable()
 ## Future Work 
 The nhanesGraph package can be further extended to a cohesive Shiny app that allows users to explore the variable trends by specifying file name, cycle, and component. The graphical component can include much more diverse options, based on continuous and categorical variables. 
 
+## References
 
+@Manual{,
+    title = {RNHANES: Facilitates Analysis of CDC NHANES Data},
+    author = {Herb Susmann},
+    year = {2016},
+    note = {R package version 1.1.0},
+    url = {http://github.com/silentspringinstitute/RNHANES},
+  }
+@Manual{,
+    title = {shiny: Web Application Framework for R},
+    author = {Winston Chang and Joe Cheng and JJ Allaire and Carson Sievert and Barret Schloerke and Yihui Xie and Jeff Allen and Jonathan McPherson and Alan Dipert and Barbara Borges},
+    year = {2022},
+    note = {R package version 1.7.3},
+    url = {https://CRAN.R-project.org/package=shiny},
+  }
+
+@Manual{,
+    title = {shinyWidgets: Custom Inputs Widgets for Shiny},
+    author = {Victor Perrier and Fanny Meyer and David Granjon},
+    year = {2022},
+    note = {R package version 0.7.5},
+    url = {https://CRAN.R-project.org/package=shinyWidgets},
+}
+
+@Book{,
+    author = {Hadley Wickham},
+    title = {ggplot2: Elegant Graphics for Data Analysis},
+    publisher = {Springer-Verlag New York},
+    year = {2016},
+    isbn = {978-3-319-24277-4},
+    url = {https://ggplot2.tidyverse.org},
+  }
