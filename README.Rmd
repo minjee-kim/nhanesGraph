@@ -39,7 +39,7 @@ From the console, the NHANES data can be accessed via nhanes_table() function by
 ```{r example}
 library(nhanesGraph)
 
-head(nhanes_table("2008", "EPH", demographics = T, recode = F))
+head(nhanes_table("2008", "EPH", demographics = T, recode = T))
 
 ```
 ### File Search 
@@ -52,4 +52,18 @@ nGraph_search()
 
 ## Variable Visualization
 
+To view the general trend of a variable, nhanes_viz function can be used. The function has flexible parameter inputs for file name and variable. If either of the parameters is null, the function takes appropriate measures to search for the variable. 
+```{r,dpi=100, out.width = '\\maxwidth'}
+nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY2")
+```
 
+### Variable Search
+
+To explore all options of variables, ngraph_variable Shiny app can be used. The Shiny app can be launched with the following code: 
+```{r, eval=F}
+nGraph_variable()
+```
+
+
+### Future Work 
+Some future work for the package includes more diverse graphing options for the nhanes_viz function and an integrated shiny app for viewing the data trends. 
