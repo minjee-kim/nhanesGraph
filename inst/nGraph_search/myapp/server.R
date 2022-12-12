@@ -8,15 +8,9 @@ server <- function(input, output){
   observe({
     if (input$close > 0) stopApp()                             # stop shiny
   })
- # DT::
+
   output$result <- renderDataTable({
-    # query == paste(input$searchme),
-    # nhanes_file_list[which(sapply(nhanes_file_list, grepl, pattern = paste(input$searchme)), ignore.case = T),]
-    # sear <-  input$searchme
-
-    # nhanes_file_list[nhanes_file_list$cycle == input$cycle,]
-    #recode(input$component, "all" = "")
-
+    data("nhanes_file_list")
     if(input$component == "all"){
       data = nhanes_file_list[nhanes_file_list$cycle == input$cycle, ]
     }else{

@@ -29,10 +29,10 @@ ui <- fluidPage(
       selectInput("component", h3("Choose a component:"),
                   choices = list("demographics",
                                  "dietary", "examination",
-                                 "laboratory",  "questionnaire" )),
-    uiOutput("variable")),
+                                 "laboratory",  "questionnaire" ))),
+    #uiOutput("variable")),
     mainPanel(
-      tableOutput("plot")
+      dataTableOutput("plot")
     )
 
   )
@@ -47,32 +47,33 @@ server <- function(input, output){
   })
 
   ### creating a selectInput for variable list, depending on the component and cycle inputs
-  output$variable <- renderUI({
+  # output$variable <- renderUI({
+  #   data("nhanes_variable_list")
+  #   ## get the corresponding variable name list by cycle and component inputs
+  #   var_list = nhanes_variable_list[nhanes_variable_list$cycle == input$cycle,]
+  #   var_list = var_list[var_list$component == input$component,]
+  #   variable_des <- as.vector(var_list$variable_description)
+  #   variable_name <- var_list[var_list$variable_description == variable_des,]$variable_name
+  #   variable_list <- paste(paste("(", variable_name, ")", sep = ""), variable_des, sep = " ")
+  #   # render selectizeInput
+  #   variable_list = unique(factor(variable_list))
+  #   selectizeInput("variable", "Variables",
+  #                  choices = c(variable_list))
+  # })
 
-    ## get the corresponding variable name list by cycle and component inputs
-    var_list = nhanes_variable_list[nhanes_variable_list$cycle == input$cycle,]
-    var_list = var_list[var_list$component == input$component,]
-    variable_des <- as.vector(var_list$variable_description)
-    variable_name <- var_list[var_list$variable_description == variable_des,]$variable_name
-    variable_list <- paste(paste("(", variable_name, ")", sep = ""), variable_des, sep = " ")
-    # render selectizeInput
-    variable_list = unique(factor(variable_list))
-    selectizeInput("variable", "Variables",
-                   choices = c(variable_list))
-  })
 
-
-  output$plot <- renderTable({
+  output$plot <- renderDataTable({
 
     ## filter with the cycle first
     data = nhanes_variable_list[nhanes_variable_list$cycle == input$cycle,]
-
-    var_name = req(input$variable)
+    data = nhanes_variable_list[nhanes_variable_list$component == input$component,]
+    data
+   #var_name = req(input$variable)
     ## getting the variable name from the input
-    var = paste(gsub("\\(*", "", (gsub(").*$", "", var_name))))
+    #var = paste(gsub("\\(*", "", (gsub(").*$", "", var_name))))
 
     ## get the file name using the variable name
-    data[data$variable_name == var, ]
+    #data[data$variable_name == var, ]
 
 
   })
