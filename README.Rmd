@@ -32,21 +32,24 @@ You can install the development version of nhanesGraph from [GitHub](https://git
 devtools::install_github("minjee-kim/nhanesGraph")
 ```
 
-## Example
+## Data Loading via nhanes_table function
 
-Users are able to search the NHANES file of interest via nGraph_search() Shiny app. 
-
-
-
-For a console command, users can access the data by specifying the year, file name, and whether they want to include demographic information in their data. 
-
+From the console, the NHANES data can be accessed via nhanes_table() function by specifying the cycle (or a specific year), file name, and whether to include demographic information for the samples in the data in the loaded data. The demographics parameter is False by default. The recode parameter allows users to load the data with descriptive categorical variables. By default, recode is False. 
 
 ```{r example}
 library(nhanesGraph)
 
-head(nhanes_table("2007-2008", "EPH"))
+head(nhanes_table("2008", "EPH", demographics = T, recode = F))
 
 ```
+### File Search 
 
-There will be a plot that looks much nicer than this :)
+In order to specify the year and file inputs in the nhanes_table function, users can explore the NHANES files with nGraph_search Shiny app. The Shiny app can be launched with the folloing code: 
+
+```{r, eval = F}
+nGraph_search()
+```
+
+## Variable Visualization
+
 
