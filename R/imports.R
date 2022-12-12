@@ -1,5 +1,6 @@
 #' @import ggplot2
 #' @import RNHANES
 #' @import shiny
-#' @import dplyr
+#' @importFrom dplyr filter
+
 NULL
