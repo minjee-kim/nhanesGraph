@@ -24,7 +24,7 @@ knitr::opts_chunk$set(
 The package invites the users to get started by installing the package from the [github](https://github.com/minjee-kim/nhanesGraph) repository via devtools. 
 ```{r setup}
 # install.packages("devtools")
-# devtools::install_github("minjee-kim/nhanesGraph")
+# devtools::install_github("minjee-kim/nhanesGraph", build_vignettes = TRUE)
 library(nhanesGraph)
 ```
 
