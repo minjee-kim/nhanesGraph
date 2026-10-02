@@ -1,43 +1,27 @@
-
-## user interface for shiny app
-#install.packages("DT")
-#library(DT)
 ui <- fluidPage(
-
-  ## exit button
   tags$button(
-    id = 'close',
+    id = "close",
     type = "button",
     class = "btn action-button",
-    onclick = "setTimeout(function(){window.close();},500);",  # close browser
+    onclick = "setTimeout(function(){window.close();},500);",
     "Close window"
   ),
-
-  ## title and background
-  titlePanel("Search NHANES files with nhanesGraph Package"),
-  shinyWidgets::setBackgroundColor(
-    color = c("#FFF0F5")
-  ),
-
-  ## user inputs
+  titlePanel("Search NHANES files with nhanesGraph"),
+  shinyWidgets::setBackgroundColor(color = c("#FFF0F5")),
   sidebarLayout(
     sidebarPanel(
-      helpText("Search NHANES files from 1999-2016"),
-
-      selectInput("cycle", h3("Choose a cycle:"),
-                  choices =  RNHANES::nhanes_cycle_years(), selected = 1),
-
-      selectInput("component", h3("Choose a component:"),
-                  choices = list("all" , "demographics",
-                                 "dietary", "examination",
-                                 "laboratory",  "questionnaire" ))),
-    # textInput("searchme",
-    #           label = "Search Bar",
-    #           value = "")),
-
-    mainPanel(
-      #DT::dataTableOutput("result")
-      dataTableOutput("result")
-    )
+      helpText("Public-use continuous NHANES files, 1999-2000 through August 2021-August 2023."),
+      selectInput(
+        "cycle", h3("Choose a cycle:"),
+        choices = nhanesGraph::nhanes_cycles()$cycle,
+        selected = "2017-2018"
+      ),
+      selectInput(
+        "component", h3("Choose a component:"),
+        choices = c("all", "demographics", "dietary", "examination", "laboratory", "questionnaire")
+      ),
+      textInput("searchme", "Search description or file name", value = "")
+    ),
+    mainPanel(DT::dataTableOutput("result"))
   )
 )

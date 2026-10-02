@@ -33,9 +33,9 @@ NHANES is a national database of biomarker data that contains demographic, dieta
 Continuous NHANES is a series of survey and examination of non-institutionalized residents of the United States, collected by the CDC since 1999. Although this database is widely used for research, the files are often difficult to work with using R. This package provides Shiny apps to help the users explore the various files and variables that NHANES has to offer using R, as well as access the data with more user friendly inputs. 
 
 ## Loading Data
-nhanes_table function extends the nhanes_load_data() function in the RNHANES package. The file_name argument is necessary to run the code successfully. 
+nhanes_table downloads the public-use XPT file from the current CDC URL. The RNHANES download path was retired. The file_name argument is necessary to run the code successfully. 
 
-Previously, any function in RNHANES package required the users to specify the year input with a specific cycle format of "2007-2008." nhanes_table allows more flexible inputs such as any numeric year within 1999-2016 and a single year string input. 
+Previously, any function in RNHANES package required the users to specify the year input with a specific cycle format of "2007-2008." nhanes_table allows more flexible inputs such as any numeric year from 1999 through 2023, or a cycle such as "2021-2023" and a single year string input. 
 ```{r example, eval=F}
 EPH2007data1 <- nhanes_table("2007","EPH")
 head(EPH2007data1)
@@ -100,7 +100,7 @@ Although it is quite difficult to view the overall trend of each data file, this
 
 
 A basic example of nhanes_viz function: 
-```{r,dpi=150, out.width = '\\maxwidth'}
+```{r, dpi=150, out.width = '\\maxwidth', eval=FALSE}
 nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
 ```
 

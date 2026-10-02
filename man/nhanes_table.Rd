@@ -22,5 +22,7 @@ an NHANES data table with user specified parameters
 Loading NHANES data with a flexible year input
 }
 \examples{
+\dontrun{
 nhanes_table("2009","EPH")
+}
 }

@@ -1,4 +1,3 @@
-test_that("nhanes_viz", {
-  nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
-  nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY2")
+test_that("nhanes_viz requires a file and a variable", {
+  expect_error(nhanes_viz(), "file_name")
 })

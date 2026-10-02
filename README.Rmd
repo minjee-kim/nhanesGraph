@@ -1,6 +1,5 @@
 ---
 output: github_document
-#runtime: shiny
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -14,57 +13,55 @@ knitr::opts_chunk$set(
 )
 ```
 
-
 # nhanesGraph
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/minjee-kim/nhanesGraph/actions/workflows/R-CMD-check.yaml)
-[![Codecov test coverage](https://codecov.io/gh/minjee-kim/nhanesGraph/branch/main/graph/badge.svg)](https://app.codecov.io/gh/minjee-kim/nhanesGraph?branch=main)
 <!-- badges: end -->
 
-nhanesGraph is a package that provides an accessible and interactive way for users to export NHANES data as well as view data trends via Shiny package. This package is an extension of the [RNHANES](https://cran.r-project.org/web/packages/RNHANES/vignettes/introduction.html) package created by Herb Susmann. 
+nhanesGraph searches public-use continuous NHANES files and downloads them from the current CDC XPT URLs. It covers 1999-2000 through August 2021-August 2023, including the 2017-2020 pre-pandemic release.
+
+CDC retired the paths used by the 2022 version of this package (and by CRAN RNHANES). Those URLs now return an HTML page, so `nhanes_table()` no longer calls RNHANES.
 
 ## Installation
 
-You can install the development version of nhanesGraph from [GitHub](https://github.com/minjee-kim/nhanesGraph) with:
-
 ``` r
 # install.packages("devtools")
-devtools::install_github("minjee-kim/nhanesGraph", build_vignettes = TRUE)
+devtools::install_github("minjee-kim/nhanesGraph")
 ```
 
-## Data Loading via nhanes_table function
+## Load a file
 
-From the console, the NHANES data can be accessed via nhanes_table() function by specifying the cycle (or a specific year), file name, and whether to include demographic information for the samples in the data in the loaded data. The demographics parameter is False by default. The recode parameter allows users to load the data with descriptive categorical variables. By default, recode is False. 
+A year or a cycle both work. A short file name is expanded to the cycle-specific CDC name (`EPH` in 2007-2008 becomes `EPH_E`; `DEMO` in 2021-2023 becomes `DEMO_L`).
 
-```{r example}
+``` r
 library(nhanesGraph)
 
-head(nhanes_table("2008", "EPH", demographics = T, recode = T))
+nhanes_cycles()
+nhanes_files()
 
+# 2007-2008 environmental phenols
+phenols <- nhanes_table(2008, "EPH", demographics = TRUE)
+
+# August 2021-August 2023 demographics
+demo <- nhanes_table("2021-2023", "DEMO")
+
+# 2017-2020 pre-pandemic demographics (also used for years 2019 and 2020)
+pre <- nhanes_table(2019, "DEMO")
 ```
-### File Search 
 
-In order to specify the year and file inputs in the nhanes_table function, users can explore the NHANES files with nGraph_search Shiny app. The Shiny app can be launched with the following code: 
+Browse the catalog without downloading:
 
-```{r, eval = F}
+``` r
 nGraph_search()
-```
-
-## Variable Visualization
-
-To view the general trend of a variable, nhanes_viz function can be used. The function has flexible parameter inputs for file name and variable. If either of the parameters is null, the function takes appropriate measures to search for the variable. 
-```{r,dpi=100, out.width = '\\maxwidth'}
-nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY2")
-```
-
-### Variable Search
-
-To explore all options of variables, nGraph_variable Shiny app can be used. The Shiny app can be launched with the following code: 
-```{r, eval=F}
 nGraph_variable()
 ```
 
+## Plot a variable
 
-### Future Work 
-Some future work for the package includes more diverse graphing options for the nhanes_viz function and an integrated shiny app for viewing the data trends. 
+``` r
+nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY1")
+nhanes_viz("hist", file_name = "DEMO", variable = "RIDAGEYR", year = "2021-2023")
+```
+
+`hist` draws a histogram for numeric columns with many values and a bar chart otherwise. `density` is also available.

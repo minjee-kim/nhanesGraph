@@ -1,30 +1,20 @@
-
-
-## server function for nhanes_shiny app
-
-#library(DT)
-
-server <- function(input, output){
+server <- function(input, output) {
   observe({
-    if (input$close > 0) stopApp()                             # stop shiny
+    if (input$close > 0) stopApp()
   })
 
-  output$result <- renderDataTable({
-    data("nhanes_file_list")
-    if(input$component == "all"){
-      data = nhanes_file_list[nhanes_file_list$cycle == input$cycle, ]
-    }else{
-      data = nhanes_file_list[nhanes_file_list$cycle == input$cycle, ]
-      data = data[data$component == input$component, ]
+  output$result <- DT::renderDataTable({
+    data <- nhanesGraph::nhanes_files()
+    data <- data[data$cycle == input$cycle, ]
+    if (!is.null(input$component) && input$component != "all") {
+      data <- data[data$component == input$component, ]
     }
-
-    data
-
-
-    # as.data.frame(RNHANES::nhanes_search(data,
-    # sear, component == input$component, ignore_case = T))
+    query <- tolower(trimws(input$searchme))
+    if (nzchar(query)) {
+      keep <- grepl(query, tolower(data$description), fixed = TRUE) |
+        grepl(query, tolower(data$data_file_name), fixed = TRUE)
+      data <- data[keep, ]
+    }
+    data[, c("cycle", "component", "data_file_name", "description", "data_url")]
   })
-
 }
-
-

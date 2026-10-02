@@ -1,86 +1,47 @@
-
-
-
 ui <- fluidPage(
-
-  ## exit button
   tags$button(
-    id = 'close',
+    id = "close",
     type = "button",
     class = "btn action-button",
-    onclick = "setTimeout(function(){window.close();},500);",  # close browser
+    onclick = "setTimeout(function(){window.close();},500);",
     "Close window"
   ),
-
-  ## title and background
-  titlePanel("Visualize NHANES data with nhanesGraph Package"),
-  shinyWidgets::setBackgroundColor(
-    color = c("#f2f0ff")
-  ),
-
-  ## user inputs
+  titlePanel("Browse NHANES files with nhanesGraph"),
+  shinyWidgets::setBackgroundColor(color = c("#f2f0ff")),
   sidebarLayout(
     sidebarPanel(
-      helpText("Visualize NHANES files by variables."),
-
-      selectInput("cycle", h3("Choose a cycle:"),
-                  choices =  RNHANES::nhanes_cycle_years(), selected = 1),
-
-      selectInput("component", h3("Choose a component:"),
-                  choices = list("demographics",
-                                 "dietary", "examination",
-                                 "laboratory",  "questionnaire" ))),
-    #uiOutput("variable")),
-    mainPanel(
-      dataTableOutput("plot")
-    )
-
+      helpText("Files published through August 2021-August 2023. Load a file with nhanes_table() and plot a column with nhanes_viz()."),
+      selectInput(
+        "cycle", h3("Choose a cycle:"),
+        choices = nhanesGraph::nhanes_cycles()$cycle,
+        selected = "2021-2023"
+      ),
+      selectInput(
+        "component", h3("Choose a component:"),
+        choices = c("demographics", "dietary", "examination", "laboratory", "questionnaire")
+      ),
+      textInput("searchme", "Search description or file name", value = "")
+    ),
+    mainPanel(DT::dataTableOutput("plot"))
   )
 )
 
-
-## server function for nhanes_shiny app
-
-server <- function(input, output){
+server <- function(input, output) {
   observe({
-    if (input$close > 0) stopApp()                             # stop shiny
+    if (input$close > 0) stopApp()
   })
 
-  ### creating a selectInput for variable list, depending on the component and cycle inputs
-  # output$variable <- renderUI({
-  #   data("nhanes_variable_list")
-  #   ## get the corresponding variable name list by cycle and component inputs
-  #   var_list = nhanes_variable_list[nhanes_variable_list$cycle == input$cycle,]
-  #   var_list = var_list[var_list$component == input$component,]
-  #   variable_des <- as.vector(var_list$variable_description)
-  #   variable_name <- var_list[var_list$variable_description == variable_des,]$variable_name
-  #   variable_list <- paste(paste("(", variable_name, ")", sep = ""), variable_des, sep = " ")
-  #   # render selectizeInput
-  #   variable_list = unique(factor(variable_list))
-  #   selectizeInput("variable", "Variables",
-  #                  choices = c(variable_list))
-  # })
-
-
-  output$plot <- renderDataTable({
-
-    ## filter with the cycle first
-    data = nhanes_variable_list[nhanes_variable_list$cycle == input$cycle,]
-    data = nhanes_variable_list[nhanes_variable_list$component == input$component,]
-    data
-   #var_name = req(input$variable)
-    ## getting the variable name from the input
-    #var = paste(gsub("\\(*", "", (gsub(").*$", "", var_name))))
-
-    ## get the file name using the variable name
-    #data[data$variable_name == var, ]
-
-
+  output$plot <- DT::renderDataTable({
+    data <- nhanesGraph::nhanes_files()
+    data <- data[data$cycle == input$cycle & data$component == input$component, ]
+    query <- tolower(trimws(input$searchme))
+    if (nzchar(query)) {
+      keep <- grepl(query, tolower(data$description), fixed = TRUE) |
+        grepl(query, tolower(data$data_file_name), fixed = TRUE)
+      data <- data[keep, ]
+    }
+    data[, c("cycle", "component", "data_file_name", "description", "doc_url")]
   })
-
-
 }
-
-
 
 shinyApp(ui, server)

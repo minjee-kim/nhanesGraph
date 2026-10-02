@@ -20,5 +20,7 @@ a ggplot with specified inputs for the variable of interest
 Visualize NHANES Variables
 }
 \examples{
+\dontrun{
 nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
+}
 }

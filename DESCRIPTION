@@ -1,31 +1,31 @@
 Package: nhanesGraph
 Title: Graphical tools for NHANES data
-Version: 1.0.0
+Version: 1.1.0
 Authors@R: 
     person("Minjee", "Kim", 
     email = "minjeekim0804@tamu.edu", 
     role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-2001-2442"))
-Description: Graphical data search tool for the US National Health and Nutrition Examination Survey data.
+Description: Search and download public-use continuous NHANES files, and plot a variable. Loads the current CDC XPT files (1999-2000 through August 2021-August 2023, including the 2017-2020 pre-pandemic release) instead of the retired RNHANES download URLs.
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
-Imports: 
+Imports:
     ggplot2,
-    RNHANES (>= 1.1.0),
+    haven,
     shiny,
-    shinyWidgets
-Remotes: 
-    SilentSpringInstitute/RNHANES
-Suggests: 
+    shinyWidgets,
+    DT
+Suggests:
     knitr,
-    DT,
     rmarkdown,
     testthat (>= 3.0.0),
     covr
 VignetteBuilder: knitr
-Depends: 
-    R (>= 2.10)
+Depends:
+    R (>= 3.6)
 Config/testthat/edition: 3
 LazyData: true
+URL: https://github.com/minjee-kim/nhanesGraph
+BugReports: https://github.com/minjee-kim/nhanesGraph/issues
