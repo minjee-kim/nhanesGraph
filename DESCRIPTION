@@ -15,13 +15,13 @@ Imports:
     ggplot2,
     haven,
     shiny,
-    shinyWidgets,
-    DT
+    shinyWidgets
 Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),
-    covr
+    covr,
+    DT
 VignetteBuilder: knitr
 Depends:
     R (>= 3.6)

@@ -2,25 +2,29 @@
 % Please edit documentation in R/nhanes_viz.R
 \name{nhanes_viz}
 \alias{nhanes_viz}
-\title{Visualize NHANES Variables}
+\title{Visualize NHANES variables}
 \usage{
-nhanes_viz(graph_type = "Hist", file_name = NULL, variable = NULL)
+nhanes_viz(graph_type = "hist", file_name = NULL, variable = NULL,
+           year = NULL)
 }
 \arguments{
-\item{graph_type}{type of graph: only Histograms are allowed, currently.}
+\item{graph_type}{\code{"hist"} or \code{"density"}.}
 
-\item{file_name}{specific file name}
+\item{file_name}{NHANES file name. A short name is expanded when \code{year} is supplied.}
 
-\item{variable}{variable name}
+\item{variable}{Column to plot.}
+
+\item{year}{Optional cycle or year. Inferred from a suffixed file name when omitted.}
 }
 \value{
-a ggplot with specified inputs for the variable of interest
+A ggplot object.
 }
 \description{
-Visualize NHANES Variables
+Visualize an NHANES variable after downloading the file.
 }
 \examples{
 \dontrun{
-nhanes_viz(graph_type = "Hist", file_name = "ENX_E", variable = "ENAATMPT")
+nhanes_viz(graph_type = "hist", file_name = "BPX_D", variable = "BPXSY1")
+nhanes_viz("hist", file_name = "DEMO", variable = "RIDAGEYR", year = "2021-2023")
 }
 }
